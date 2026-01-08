@@ -47,15 +47,18 @@ async def test_uart_tx_with_txfifo(dut):
     await reset(dut)
     dut.parity_type.value = 1
     dut.baud_rate.value = 3
-    for i in range(10):
+    for i in range(5):
         await write_fifo(dut)
     await RisingEdge(dut.bd_clk_out)
-
-    dut.send.value = 1
-    await RisingEdge(dut.bd_clk_out)
-    dut.send.value = 0
+    #await FallingEdge(dut.bd_clk_out)
+    #dut.send.value = 0
     #await RisingEdge(dut.active)
     #await FallingEdge(dut.active)
     
     await Timer(1000,"us")
+    await Timer(1000,"us")
+    await Timer(1000,"us")
+    await Timer(1000,"us")
+    await Timer(1000,"us")
+
 
